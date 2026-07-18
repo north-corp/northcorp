@@ -1,15 +1,19 @@
 [
   {
-    "name": "Unnamed",
+    "name": "Atlas",
+    "identifier": "KN-16T",
     "class": "Type-9 Heavy",
     "role": "Bulk Haulage",
+    "value": "0 CR",
     "status": "ACTIVE",
     "statusClass": "status-ok"
   },
   {
     "name": "Caspian Explorer",
+    "identifier": "---",
     "class": "Zorgon Peterson",
     "role": "Deep-Space Exploration",
+    "value": "0 CR",
     "status": "ENGINEERING",
     "statusClass": "status-wip"
   }
