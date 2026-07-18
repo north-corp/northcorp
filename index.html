@@ -384,8 +384,15 @@
 
 <script>
   fetch('fleet.json?v=' + Date.now())
-    .then(function(response) { return response.json(); })
+    .then(function(response) {
+      console.log('Fleet fetch status:', response.status);
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+      return response.json();
+    })
     .then(function(ships) {
+      console.log('Fleet data loaded:', ships);
       var tbody = document.getElementById('fleet-body');
       tbody.innerHTML = '';
       ships.forEach(function(ship) {
@@ -400,7 +407,8 @@
         tbody.innerHTML += row;
       });
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.error('Fleet fetch failed:', err);
       document.getElementById('fleet-body').innerHTML =
         '<tr><td colspan="6" style="color:#a04040;">Fleet data unavailable.</td></tr>';
     });
