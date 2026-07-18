@@ -162,10 +162,16 @@
   }
   .svc-card p { color: #888; font-size: 14px; }
 
+  .fleet-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .fleet-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 8px;
+    min-width: 620px;
   }
   .fleet-table th {
     text-align: left;
@@ -176,12 +182,14 @@
     padding: 12px 16px;
     border-bottom: 1px solid #1a1a1a;
     font-weight: normal;
+    white-space: nowrap;
   }
   .fleet-table td {
     padding: 14px 16px;
     border-bottom: 1px solid #111;
     font-size: 14px;
     color: #bbb;
+    white-space: nowrap;
   }
   .status-ok { color: #6a9a5b; }
   .status-wip { color: #c4a040; }
@@ -288,40 +296,23 @@
   <p class="section-label">Section 03</p>
   <h2>Active Fleet</h2>
 
-  <table class="fleet-table">
-    <thead>
-      <tr>
-        <th>Ship</th>
-        <th>Class</th>
-        <th>Role</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="fleet-body">
-      <tr><td colspan="4" style="color:#666;">Loading fleet data...</td></tr>
-      <script>
-         fetch('fleet.json')
-           .then(function(response) { return response.json(); })
-           .then(function(ships) {
-             var tbody = document.getElementById('fleet-body');
-             tbody.innerHTML = '';
-             ships.forEach(function(ship) {
-               var row = '<tr>';
-               row += '<td>' + ship.name + '</td>';
-               row += '<td>' + ship.class + '</td>';
-               row += '<td>' + ship.role + '</td>';
-               row += '<td class="' + ship.statusClass + '">' + ship.status + '</td>';
-               row += '</tr>';
-               tbody.innerHTML += row;
-             });
-           })
-           .catch(function() {
-             document.getElementById('fleet-body').innerHTML =
-               '<tr><td colspan="4" style="color:#a04040;">Fleet data unavailable.</td></tr>';
-           });
-      </script>
-    </tbody>
-  </table>
+  <div class="fleet-scroll">
+    <table class="fleet-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Identifier</th>
+          <th>Class</th>
+          <th>Role</th>
+          <th>Value</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="fleet-body">
+        <tr><td colspan="6" style="color:#666;">Loading fleet data...</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <p class="muted" style="margin-top: 20px;">Fleet carrier acquisition pending. Inquiries regarding carrier loading contracts are welcome in advance.</p>
 </section>
@@ -386,6 +377,30 @@
   <p>NORTHCORP [NINC] | Kurukana | Established 3310</p>
   <p style="margin-top: 4px;">Copyright 3310 NORTHCORP. All rights reserved. Not a publicly traded entity.</p>
 </footer>
+
+<script>
+  fetch('fleet.json')
+    .then(function(response) { return response.json(); })
+    .then(function(ships) {
+      var tbody = document.getElementById('fleet-body');
+      tbody.innerHTML = '';
+      ships.forEach(function(ship) {
+        var row = '<tr>';
+        row += '<td>' + ship.name + '</td>';
+        row += '<td>' + ship.identifier + '</td>';
+        row += '<td>' + ship.class + '</td>';
+        row += '<td>' + ship.role + '</td>';
+        row += '<td>' + ship.value + '</td>';
+        row += '<td class="' + ship.statusClass + '">' + ship.status + '</td>';
+        row += '</tr>';
+        tbody.innerHTML += row;
+      });
+    })
+    .catch(function() {
+      document.getElementById('fleet-body').innerHTML =
+        '<tr><td colspan="6" style="color:#a04040;">Fleet data unavailable.</td></tr>';
+    });
+</script>
 
 </body>
 </html>
