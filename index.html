@@ -1,0 +1,298 @@
+```
+<!-- Fonts: Space Mono for headings, Inter for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    /* ── RESET & BASE ────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --bg:         #0d0d0d;
+        --bg-card:    #141414;
+        --bg-elevated:#1a1a1a;
+        --accent:     #c27a3f;
+        --accent-dim: #8a5630;
+        --text:       #c8c8c8;
+        --text-muted: #7a7a7a;
+        --text-head:  #e8e8e8;
+        --border:     #262626;
+        --red:        #a04040;
+        --green:      #5c8a5c;
+        --max-width:  900px;
+        --font-head:  'Space Mono', monospace;
+        --font-body:  'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 300;
+        line-height: 1.7;
+        font-size: 16px;
+    }
+
+    /* ── TYPOGRAPHY ──────────────────────────── */
+    h1, h2, h3 { font-family: var(--font-head); font-weight: 700; color: var(--text-head); letter-spacing: 0.03em; }
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.5rem; color: var(--accent); }
+    h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-head); }
+    a  { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #d9945a; }
+
+    .accent-text { color: var(--accent); }
+    .muted       { color: var(--text-muted); font-size: 0.85rem; }
+    .small       { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── LAYOUT ──────────────────────────────── */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+    section {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ── FLEET TABLE ─────────────────────────── */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-head);
+        font-size: 0.9rem;
+    }
+    th, td { padding: 0.75rem 1rem; text-align: left; }
+    th { color: var(--text-muted); font-weight: 400; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border); }
+    td { border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    .status-active   { color: var(--green); }
+    .status-engineering { color: #c2a44a; }
+
+    /* ── SERVICES CARDS ──────────────────────── */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    .service-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 1.75rem;
+        border-radius: 2px;
+    }
+    .service-card .icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+    .service-card h3 { margin-bottom: 0.5rem; }
+    .service-card p  { font-size: 0.9rem; line-height: 1.5; color: var(--text-muted); }
+
+    /* ── BUTTONS ─────────────────────────────── */
+    .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--bg);
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.85rem 2rem;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+        border-radius: 2px;
+    }
+    .btn:hover { background: #d9945a; color: var(--bg); transform: translateY(-1px); }
+    .btn-ghost {
+        background: transparent;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+    }
+    .btn-ghost:hover { background: var(--accent); color: var(--bg); }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── HERO ────────────────────────────────── */
+    .hero {
+        padding: 6rem 0 5rem;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+        background: radial-gradient(ellipse at 50% 0%, rgba(194,122,63,0.06) 0%, transparent 60%);
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .hero .subhead { font-size: 1.1rem; color: var(--text-muted); font-family: var(--font-head); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .hero .tagline { font-size: 0.95rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; }
+
+    /* ── HEADER BAR ──────────────────────────── */
+    .topbar {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        font-family: var(--font-head);
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+    }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: var(--text-muted); margin-left: 1.5rem; transition: color 0.2s; }
+    .topbar a:hover { color: var(--accent); }
+    .topbar .brand { color: var(--accent); font-weight: 700; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+        padding: 3rem 0;
+        text-align: center;
+        border-top: 1px solid var(--border);
+    }
+    footer p { color: var(--text-muted); font-size: 0.8rem; }
+    footer .footer-quote { color: var(--accent-dim); font-style: italic; margin-bottom: 0.5rem; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 600px) {
+        h1 { font-size: 2rem; }
+        .hero h1 { font-size: 2.2rem; }
+        .topbar .nav-links { display: none; }
+        .services-grid { grid-template-columns: 1fr; }
+        section { padding: 2.5rem 0; }
+    }
+</style>
+```
+
+NORTHCORP [NINC] [About](#about) [Services](#services) [Fleet](#fleet) [Contact](#contact)
+
+# NORTHCORP
+
+Trading & Mining Contractor · Est. 3310 · Kurukana
+Reliable haulage. Resource extraction. Carrier logistics.  
+No job too large or too remote.
+[Inquire About Contracts →](#contact)
+
+## Who We Are
+
+```
+    <p>NORTHCORP is a privately held commodity trading and mining contractor operating out of the Kurukana system. We provide haulage, carrier logistics, and resource extraction services to established organizations across the Core Systems and beyond.</p>
+
+    <p style="margin-top:1rem;">Founded by CEO Kalvin North, NORTHCORP is built on old-fashioned principles: work hard, deliver on time, and never make a promise you can't keep. We may be a small operation, but we handle every contract with the same discipline and attention to detail you'd expect from a fleet ten times our size.</p>
+
+    <p style="margin-top:1rem;">Currently operating a Type-9 Heavy for bulk haulage and a Caspian Explorer slated for future deep-space operations. Fleet carrier acquisition in progress.</p>
+
+    <p class="small" style="margin-top:1rem;">NORTHCORP is not currently accepting employee applications. All crew positions are filled.</p>
+</div>
+```
+
+## Services
+
+```
+    <div class="services-grid">
+        <div class="service-card">
+            <span class="icon">&#128667;</span>
+            <h3>Commodity Haulage</h3>
+            <p>Bulk transport of commodities across the bubble. Loading and unloading of fleet carriers. Full-contract haulage from source to destination.</p>
+        </div>
+        <div class="service-card">
+            <span class="icon">&#9935;</span>
+            <h3>Resource Extraction</h3>
+            <p>Mining operations — laser, core, and sub-surface. Supply contracts for raw and refined minerals. Verified extraction volumes.</p>
+        </div>
+        <div class="service-card">
+            <span class="icon">&#128752;</span>
+            <h3>Carrier Logistics</h3>
+            <p>Carrier loading and unloading coordination. Jump scheduling. Cargo transfer management. Advance inquiries welcome.</p>
+        </div>
+    </div>
+</div>
+```
+
+## Active Fleet
+
+```
+    <table>
+        <thead>
+            <tr>
+                <th>Ship</th>
+                <th>Class</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unnamed</td>
+                <td>Type-9 Heavy</td>
+                <td>Bulk Haulage</td>
+                <td class="status-active">Active — Operational</td>
+            </tr>
+            <tr>
+                <td>Caspian Explorer</td>
+                <td>Zorgon Peterson</td>
+                <td>Deep-Space Exploration</td>
+                <td class="status-engineering">Undergoing Engineering</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="small" style="margin-top:1.5rem;">Fleet carrier acquisition pending. Inquiries regarding carrier loading contracts are welcome in advance.</p>
+</div>
+```
+
+## Now Seeking Contracts
+
+```
+    <p>NORTHCORP is actively seeking haulage and supply contracts. If your organization requires reliable commodity transport, carrier loading or unloading, or resource extraction, we want to hear from you.</p>
+
+    <p style="margin-top:1rem;">We work with established corporations, independent fleet carriers, and squadron operations. Competitive rates. Verified delivery.</p>
+
+    <p class="small" style="margin-top:1rem;">All contracts negotiated directly with CEO North. No intermediaries. No brokers.</p>
+
+    <div class="btn-row">
+        <a href="#contact" class="btn">Make Contact</a>
+    </div>
+</div>
+```
+
+## Operational Headquarters
+
+```
+    <p><strong>Czerny Landing</strong><br>
+    Planet 7, Moon A &middot; Kurukana System</p>
+
+    <p style="margin-top:0.5rem;">Shipyard and outfitting services available on-site. Surface port with full docking facilities.</p>
+
+    <p class="small" style="margin-top:0.5rem;">In-person meetings by appointment only.</p>
+</div>
+```
+
+## Make Contact
+
+```
+    <p>All contract inquiries and business communications should be directed to CEO Kalvin North.</p>
+
+    <p style="margin-top:1rem;">
+        <strong>Inara:</strong> <a href="#">NORTHCORP Squadron Page</a><br>
+        <strong>Discord:</strong> <a href="#">Join the NORTHCORP Server</a><br>
+        <strong>HQ:</strong> Czerny Landing, Kurukana
+    </p>
+
+    <p class="small" style="margin-top:1rem;">Response within one standard business cycle (24 hours).</p>
+</div>
+```
+
+## Employee Access
+
+```
+    <p>NORTHCORP personnel may access internal systems through the secure employee portal. Contract tracking, flight logging, fleet status updates, and internal communications.</p>
+
+    <div class="btn-row">
+        <a href="#" class="btn btn-ghost">Employee Portal &rarr;</a>
+    </div>
+
+    <p class="small" style="margin-top:1rem;">Authorized personnel only. Credentials required.</p>
+</div>
+```
+
+"No job too large or too remote."
+**NORTHCORP [NINC]** · Kurukana · Established 3310
+© 3310 NORTHCORP. All rights reserved. Not a publicly traded entity.
