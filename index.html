@@ -297,19 +297,29 @@
         <th>Status</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>Unnamed</td>
-        <td>Type-9 Heavy</td>
-        <td>Bulk Haulage</td>
-        <td class="status-ok">ACTIVE</td>
-      </tr>
-      <tr>
-        <td>Caspian Explorer</td>
-        <td>Zorgon Peterson</td>
-        <td>Deep-Space Exploration</td>
-        <td class="status-wip">ENGINEERING</td>
-      </tr>
+    <tbody id="fleet-body">
+      <tr><td colspan="4" style="color:#666;">Loading fleet data...</td></tr>
+      <script>
+         fetch('fleet.json')
+           .then(function(response) { return response.json(); })
+           .then(function(ships) {
+             var tbody = document.getElementById('fleet-body');
+             tbody.innerHTML = '';
+             ships.forEach(function(ship) {
+               var row = '<tr>';
+               row += '<td>' + ship.name + '</td>';
+               row += '<td>' + ship.class + '</td>';
+               row += '<td>' + ship.role + '</td>';
+               row += '<td class="' + ship.statusClass + '">' + ship.status + '</td>';
+               row += '</tr>';
+               tbody.innerHTML += row;
+             });
+           })
+           .catch(function() {
+             document.getElementById('fleet-body').innerHTML =
+               '<tr><td colspan="4" style="color:#a04040;">Fleet data unavailable.</td></tr>';
+           });
+      </script>
     </tbody>
   </table>
 
