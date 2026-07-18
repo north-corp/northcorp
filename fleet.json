@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Unnamed",
+    "class": "Type-9 Heavy",
+    "role": "Bulk Haulage",
+    "status": "ACTIVE",
+    "statusClass": "status-ok"
+  },
+  {
+    "name": "Caspian Explorer",
+    "class": "Zorgon Peterson",
+    "role": "Deep-Space Exploration",
+    "status": "ENGINEERING",
+    "statusClass": "status-wip"
+  }
+]
