@@ -383,7 +383,7 @@
 </footer>
 
 <script>
-  fetch('fleet.json')
+  fetch('fleet.json?v=' + Date.now())
     .then(function(response) { return response.json(); })
     .then(function(ships) {
       var tbody = document.getElementById('fleet-body');
