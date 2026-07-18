@@ -1,20 +1,56 @@
 [
   {
-    "name": "Atlas",
-    "identifier": "KN-16T",
-    "class": "Type-9 Heavy",
-    "role": "Bulk Haulage",
-    "value": "0 CR",
+    "name": "NORTHSTAR",
+    "identifier": "W8V-B7B",
+    "class": "Drake-Class Carrier",
+    "role": "NORTHCORP HQ",
+    "value": "5,500,000,000 CR",
     "status": "ACTIVE",
     "statusClass": "status-ok"
   },
   {
-    "name": "Caspian Explorer",
-    "identifier": "---",
-    "class": "Zorgon Peterson",
-    "role": "Deep-Space Exploration",
-    "value": "0 CR",
+    "name": "WHITEFANG",
+    "identifier": "KN-17E",
+    "class": "IMPERIAL EAGLE",
+    "role": "CORPORATE SHITTLE / EXECUTIVE TRANSPORT",
+    "value": "7,614,846 CR",
+    "status": "ACTIVE",
+    "statusClass": "status-ok"
+  },
+  {
+    "name": "ENCUMBRANCE",
+    "identifier": "9C-H01",
+    "class": "PANTHA CLIPPER MK II",
+    "role": "TRADE HAULER",
+    "value": "445,384,108 CR",
+    "status": "ACTIVE",
+    "statusClass": "status-ok"
+  },
+  {
+    "name": "ATLAS",
+    "identifier": "9C-H02",
+    "class": "TYPE-9 HEAVY",
+    "role": "TRADE HAULER",
+    "value": "90,117,047 CR",
+    "status": "ACTIVE",
+    "statusClass": "status-ok"
+  },
+  {
+    "name": "CURIOSITY",
+    "identifier": "9C-X01",
+    "class": "CASPIAN EXPLORER",
+    "role": "DEEP-SPACE EXPLORATION/EXOBIOLOGY",
+    "value": "323,589,868 CR",
     "status": "ENGINEERING",
     "statusClass": "status-wip"
-  }
+  },
+  {
+    "name": "UNNAMED VESSEL",
+    "identifier": "9C-000",
+    "class": "LYNX HIGHLINER",
+    "role": "PASSENGER STARSHIP / LUXURY CRUISE LINER",
+    "value": "0 CR",
+    "status": "INACTIVE",
+    "statusClass": "status-wip"
+  },
 ]
